@@ -10,6 +10,8 @@ class FlashCardComponent extends Component
     public $question;
     public $answer;
     public $flashcards;
+    public $isEditing = false;
+    public $flashCardId;
 
     protected $rules = [
         'question' => 'required',
@@ -18,23 +20,46 @@ class FlashCardComponent extends Component
 
     public function mount()
     {
-        $this->flashcards = FlashCard::all();
+        $this->flashcards = FlashCard::orderBy('created_at', 'desc')->get();
     }
 
     public function save()
     {
         $this->validate();
 
-        FlashCard::create([
-            'question' => $this->question,
-            'answer' => $this->answer,
-        ]);
+        if ($this->isEditing) {
+            $flashCard = FlashCard::find($this->flashCardId);
+            $flashCard->update([
+                'question' => $this->question,
+                'answer' => $this->answer,
+            ]);
+        } else {
+            FlashCard::create([
+                'question' => $this->question,
+                'answer' => $this->answer,
+            ]);
+        }
 
-        $this->flashcards = FlashCard::all();
-
-        $this->reset('question', 'answer');
+        $this->flashcards = FlashCard::orderBy('created_at', 'desc')->get();
+        $this->reset('question', 'answer', 'isEditing', 'flashCardId');
 
         $this->emit('saved');
+    }
+
+    public function edit($id)
+    {
+        $this->isEditing = true;
+        $flashCard = FlashCard::find($id);
+        $this->question = $flashCard->question;
+        $this->answer = $flashCard->answer;
+        $this->flashCardId = $id;
+    }
+
+    public function delete($id)
+    {
+        $flashCard = FlashCard::find($id);
+        $flashCard->delete();
+        $this->flashcards = FlashCard::all();
     }
 
     public function render()
