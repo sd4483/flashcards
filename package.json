@@ -5,7 +5,8 @@
         "dev": "vite",
         "build": "vite build",
         "serve": "vite preview",
-        "postinstall": "npm run build"
+        "postinstall": "npm run build",
+        "heroku-postbuild": "npm run production"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.14",
