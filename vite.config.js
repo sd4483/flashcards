@@ -10,6 +10,7 @@ export default defineConfig({
     ],
 
     base: './',
+    
 
     server: {
         https: true,
