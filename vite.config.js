@@ -9,9 +9,4 @@ export default defineConfig({
         }),
     ],
 
-    base: '/build/',
-
-    server: {
-        https: true,
-    }
 });
