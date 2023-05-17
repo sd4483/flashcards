@@ -7,42 +7,68 @@ use App\Models\FlashCard;
 
 class FlashCardComponent extends Component
 {
-    public $question;
-    public $answer;
+    public $form = [];
+    public $search = '';
     public $flashcards;
     public $isEditing = false;
     public $flashCardId;
+    public $expandedFlashCard = null;
 
     protected $rules = [
         'question' => 'required',
         'answer' => 'required',
     ];
+    
+
+    protected $listeners = ['deleteConfirmed' => 'delete'];
 
     public function mount()
     {
-        $this->flashcards = FlashCard::orderBy('created_at', 'desc')->get();
+        $this->flashcards = $this->runQuery();
+    }
+
+    public function runQuery()
+    {
+        return FlashCard::query()
+            ->where('question', 'like', '%' . $this->search . '%')
+            ->orWhere('answer', 'like', '%' . $this->search . '%')
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
+
+    public function updatedSearch()
+    {
+        $this->flashcards = $this->runQuery();
+    }
+
+    public function clearSearch()
+    {
+        $this->search = '';
+        $this->flashcards = $this->runQuery();
     }
 
     public function save()
     {
-        $this->validate();
-
+        $this->validate([
+            'form.question' => 'required',
+            'form.answer' => 'required',
+        ]);
+    
         if ($this->isEditing) {
             $flashCard = FlashCard::find($this->flashCardId);
             $flashCard->update([
-                'question' => $this->question,
-                'answer' => $this->answer,
+                'question' => $this->form['question'],
+                'answer' => $this->form['answer'],
             ]);
         } else {
-            FlashCard::create([
-                'question' => $this->question,
-                'answer' => $this->answer,
-            ]);
+            $flashCard = FlashCard::create($this->form);
+    
+            $this->expandedFlashCard = $flashCard->id;
         }
-
+    
         $this->flashcards = FlashCard::orderBy('created_at', 'desc')->get();
-        $this->reset('question', 'answer', 'isEditing', 'flashCardId');
-
+        $this->reset('form', 'isEditing', 'flashCardId');
+    
         $this->emit('saved');
     }
 
@@ -50,8 +76,8 @@ class FlashCardComponent extends Component
     {
         $this->isEditing = true;
         $flashCard = FlashCard::find($id);
-        $this->question = $flashCard->question;
-        $this->answer = $flashCard->answer;
+        $this->form['question'] = $flashCard->question;
+        $this->form['answer'] = $flashCard->answer;
         $this->flashCardId = $id;
     }
 
@@ -59,7 +85,19 @@ class FlashCardComponent extends Component
     {
         $flashCard = FlashCard::find($id);
         $flashCard->delete();
-        $this->flashcards = FlashCard::all();
+        $this->flashcards = FlashCard::orderBy('id', 'desc')->get();
+    }
+
+    public function confirmDelete($id)
+    {
+        if (confirm('Are you sure you want to delete this flashcard?')) {
+            $this->delete($id);
+        }
+    }
+
+    public function expand($id)
+    {
+        $this->expandedFlashCard = $this->expandedFlashCard === $id ? null : $id;
     }
 
     public function render()
