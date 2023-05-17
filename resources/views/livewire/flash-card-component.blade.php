@@ -1,7 +1,7 @@
 <div class="flex justify-center">
     <div class="w-full max-w-xl mt-8 ml-2 mr-2">
         <h1 class="text-2xl mb-8 font-bold text-center text-white">FlashCards 🃏</h1>
-        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" wire:submit.prevent="save">
+        <form class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4" wire:submit.prevent="save">
             <input type="text" wire:model="form.question" placeholder="Title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
             @error('question') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
             <textarea wire:model.defer="form.answer" id="answer-textarea" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="answer" type="text" placeholder="Content"></textarea>
@@ -33,7 +33,7 @@
         @endif
 
         @foreach($flashcards as $flashcard)
-            <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4">
                 <div>
                     <div class="flex items-center justify-between">
                         <p class="font-bold text-lg">{{ $flashcard->question }}</p>
