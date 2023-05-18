@@ -14,4 +14,9 @@ class FlashCard extends Model
         'question',
         'answer',
     ];
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'flash_cards_groups');
+    }
 }

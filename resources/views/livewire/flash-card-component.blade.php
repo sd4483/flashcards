@@ -1,6 +1,11 @@
 <div class="flex justify-center">
     <div class="w-full max-w-xl mt-8 ml-2 mr-2">
-        <h1 class="text-2xl mb-8 font-bold text-center text-white">FlashCards 🃏</h1>
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-2xl font-bold text-left text-white">FlashCards 🃏</h1>
+            <a href="{{ route('groups') }}" class="bg-cyan-700 text-white font-medium text-base py-2 px-4 rounded hover:bg-cyan-800">
+                Make Groups
+            </a>
+        </div>
         <form class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4" wire:submit.prevent="save">
             <input type="text" wire:model="form.question" placeholder="Title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
             @error('question') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
@@ -33,7 +38,7 @@
         @endif
 
         @foreach($flashcards as $flashcard)
-            <div class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4">
+            <div class="bg-white shadow-md rounded px-6 pt-4 pb-4 mb-4">
                 <div>
                     <div class="flex items-center justify-between">
                         <p class="font-bold text-lg">{{ $flashcard->question }}</p>
@@ -51,7 +56,7 @@
                     </div>
                     @if($expandedFlashCard === $flashcard->id)
                         <p class="text-gray-700 text-lg font-light mt-2 mb-4">{{ $flashcard->answer }}</p>
-                        <div class="flex items-center justify-between">
+                        <div class="flex items-center justify-between mb-2">
                             <button wire:click="edit({{ $flashcard->id }})" class="bg-blue-500 hover:bg-blue-600 text-white font-md py-2 px-4 rounded mr-2">Edit</button>
                             <button wire:click="$emit('triggerConfirm', {{ $flashcard->id }})" class="ml-4 bg-rose-600 hover:bg-red-700 text-white font-md py-2 px-4 rounded">
                                 Delete

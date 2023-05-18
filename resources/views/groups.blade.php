@@ -17,11 +17,10 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
 
-        <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="bg-teal-900 font-lexend">
-        @livewire('flash-card-component')
+    <body class="bg-cyan-900 font-lexend">
+        @livewire('group-component')
         @livewireScripts
-    </body>    
+    </body>
 </html>
