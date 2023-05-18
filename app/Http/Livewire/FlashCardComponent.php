@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\FlashCard;
+use DB;
 
 class FlashCardComponent extends Component
 {
@@ -30,8 +31,8 @@ class FlashCardComponent extends Component
     public function runQuery()
     {
         return FlashCard::query()
-            ->where('question', 'like', '%' . strtolower($this->search) . '%')
-            ->orWhere('answer', 'like', '%' . strtolower($this->search) . '%')
+            ->where(DB::raw('LOWER(question)'), 'like', strtolower($this->search) . '%')
+            ->orWhere(DB::raw('LOWER(answer)'), 'like', '%' . strtolower($this->search) . '%')
             ->orderBy('created_at', 'desc')
             ->get();
     }
