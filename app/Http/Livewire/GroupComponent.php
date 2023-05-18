@@ -28,8 +28,9 @@ class GroupComponent extends Component
 
     public function updatedFlashCardSearch()
     {
-        $this->flashcards = FlashCard::where(DB::raw('LOWER(question)'), 'like', strtolower($this->flashCardSearch) . '%')
-            ->orWhere(DB::raw('LOWER(answer)'), 'like', strtolower($this->flashCardSearch) . '%')
+        $this->flashcards = FlashCard::query()
+            ->where(DB::raw('LOWER(question)'), 'like', strtolower($this->flashCardSearch) . '%')
+            ->orWhere(DB::raw('LOWER(answer)'), 'like', '%' . strtolower($this->flashCardSearch) . '%')
             ->get();
     }
 
