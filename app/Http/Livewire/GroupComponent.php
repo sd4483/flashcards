@@ -129,11 +129,15 @@ class GroupComponent extends Component
         $this->emit('alert', ['type' => 'success', 'message' => 'Group deleted successfully']);
     }
 
+    public function clearSearch()
+    {
+        $this->search = '';
+    }
 
 
     public function render()
     {
-        $groups = Group::with('flashcards')->orderBy('created_at', 'desc')->get();
+        $groups = Group::with('flashcards')->where('name', 'like', '%'.$this->search.'%')->orderBy('created_at', 'desc')->get();
 
         return view('livewire.group-component', ['groups' => $groups])
             ->layout('groups');

@@ -28,6 +28,28 @@
             </div>
         </form>
 
+        <div class="relative mb-4">
+            <input 
+                type="text" 
+                wire:model="search" 
+                placeholder="Search Groups ..." 
+                class="shadow placeholder:text-gray-300 appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline pl-8 bg-transparent border-white"
+            >
+        </div>
+            
+        @if(strlen($search) > 0)
+            <div class="mb-4">
+                <span class="text-white">{{ count($groups) }} groups found</span>
+                <button 
+                    class="bg-yellow-600 hover:bg-yellow-700 text-white font-md py-2 px-4 rounded ml-2"
+                    wire:click="clearSearch"
+                >
+                    Clear search
+                </button>
+            </div>
+        @endif
+        
+
         @foreach($groups as $group)
         <div class="bg-gray-200 rounded px-6 pt-4 pb-4 mb-4">
             <div>
