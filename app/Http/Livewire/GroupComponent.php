@@ -27,8 +27,8 @@ class GroupComponent extends Component
 
     public function updatedFlashCardSearch()
     {
-        $this->flashcards = FlashCard::where('question', 'ILIKE', '%' . strtolower($this->flashCardSearch) . '%')
-            ->orWhere('answer', 'ILIKE', '%' . strtolower($this->flashCardSearch) . '%')
+        $this->flashcards = FlashCard::where('question', 'like', '%' . strtolower($this->flashCardSearch) . '%')
+            ->orWhere('answer', 'like', '%' . strtolower($this->flashCardSearch) . '%')
             ->get();
     }
 
@@ -43,7 +43,7 @@ class GroupComponent extends Component
 
         // Reset array keys
         $this->selectedFlashCards = array_values($this->selectedFlashCards);
-
+        
     }
 
     public function expand($groupId)
@@ -139,7 +139,7 @@ class GroupComponent extends Component
 
     public function render()
     {
-        $groups = Group::with('flashcards')->where('name', 'ILIKE', '%'. strtolower($this->groupSearch) .'%')->orderBy('created_at', 'desc')->get();
+        $groups = Group::with('flashcards')->where(DB::raw('LOWER(name)'), 'like', strtolower($this->groupSearch) . '%')->orderBy('created_at', 'desc')->get();
 
         return view('livewire.group-component', ['groups' => $groups])
             ->layout('groups');
