@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\FlashCard;
 use App\Models\Group;
 use Illuminate\Validation\Rule;
+use DB;
 
 class GroupComponent extends Component
 {
