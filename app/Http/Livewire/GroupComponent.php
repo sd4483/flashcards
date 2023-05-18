@@ -10,7 +10,8 @@ use Illuminate\Validation\Rule;
 class GroupComponent extends Component
 {
     public $groupTitle = '';
-    public $search = '';
+    public $groupSearch = '';
+    public $flashCardSearch = '';
     public $flashcards = [];
     public $selectedFlashCards = [];
     public $expandedFlashCard;
@@ -24,10 +25,10 @@ class GroupComponent extends Component
         $this->flashcards = FlashCard::all();
     }
 
-    public function updatedSearch()
+    public function updatedFlashCardSearch()
     {
-        $this->flashcards = FlashCard::where('question', 'like', '%' . $this->search . '%')
-            ->orWhere('answer', 'like', '%' . $this->search . '%')
+        $this->flashcards = FlashCard::where('question', 'like', '%' . strtolower($this->flashCardSearch) . '%')
+            ->orWhere('answer', 'like', '%' . strtolower($this->flashCardSearch) . '%')
             ->get();
     }
 
@@ -137,7 +138,7 @@ class GroupComponent extends Component
 
     public function render()
     {
-        $groups = Group::with('flashcards')->where('name', 'like', '%'.$this->search.'%')->orderBy('created_at', 'desc')->get();
+        $groups = Group::with('flashcards')->where('name', 'like', '%'. strtolower($this->groupSearch) .'%')->orderBy('created_at', 'desc')->get();
 
         return view('livewire.group-component', ['groups' => $groups])
             ->layout('groups');

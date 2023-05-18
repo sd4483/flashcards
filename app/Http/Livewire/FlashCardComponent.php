@@ -30,8 +30,8 @@ class FlashCardComponent extends Component
     public function runQuery()
     {
         return FlashCard::query()
-            ->where('question', 'like', '%' . $this->search . '%')
-            ->orWhere('answer', 'like', '%' . $this->search . '%')
+            ->where('question', 'like', '%' . strtolower($this->search) . '%')
+            ->orWhere('answer', 'like', '%' . strtolower($this->search) . '%')
             ->orderBy('created_at', 'desc')
             ->get();
     }

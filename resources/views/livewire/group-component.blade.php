@@ -9,7 +9,7 @@
 
         <form class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4" wire:submit.prevent="createOrUpdateGroup">
             <input type="text" wire:model="groupTitle" placeholder="Group Title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
-            <input type="text" wire:model="search" placeholder="Search Flash Cards" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
+            <input type="text" wire:model="flashCardSearch" placeholder="Search Flash Cards" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
 
             <div style="height: 200px; overflow-y: scroll;" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4 bg-white">
                 @foreach($flashcards as $flashcard)
@@ -31,18 +31,18 @@
         <div class="relative mb-4">
             <input 
                 type="text" 
-                wire:model="search" 
+                wire:model="groupSearch" 
                 placeholder="Search Groups ..." 
                 class="shadow placeholder:text-gray-300 appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline pl-8 bg-transparent border-white"
             >
         </div>
             
-        @if(strlen($search) > 0)
+        @if(strlen($groupSearch) > 0)
             <div class="mb-4">
                 <span class="text-white">{{ count($groups) }} groups found</span>
                 <button 
                     class="bg-yellow-600 hover:bg-yellow-700 text-white font-md py-2 px-4 rounded ml-2"
-                    wire:click="clearSearch"
+                    wire:click="clearGroupSearch"
                 >
                     Clear search
                 </button>
