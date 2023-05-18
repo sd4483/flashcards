@@ -43,6 +43,7 @@ class GroupComponent extends Component
 
         // Reset array keys
         $this->selectedFlashCards = array_values($this->selectedFlashCards);
+        
     }
 
     public function expand($groupId)
