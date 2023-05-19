@@ -3,7 +3,7 @@
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-2xl font-bold text-left text-white">FlashCard Groups 🎴</h1>
             <a href="{{ route('welcome') }}" class="bg-teal-700 text-white font-medium text-base py-2 px-4 rounded hover:bg-teal-800">
-                Make FlashCards
+                FlashCards
             </a>
         </div>
 
@@ -87,7 +87,7 @@
                         </button>
                     </div>
                     @if($expandedFlashCard === $flashcard->id)
-                        <p class="text-gray-700 text-lg font-light mt-2 mb-4">{{ $flashcard->answer }}</p>
+                        <p class="text-gray-700 text-lg font-light mt-2 mb-4">{!! nl2br(e($flashcard->answer)) !!}</p>
                     @endif
                 </div>
             @endforeach

@@ -3,7 +3,7 @@
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-2xl font-bold text-left text-white">FlashCards 🃏</h1>
             <a href="{{ route('groups') }}" class="bg-cyan-700 text-white font-medium text-base py-2 px-4 rounded hover:bg-cyan-800">
-                Make Groups
+                Groups
             </a>
         </div>
         <form class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4" wire:submit.prevent="save">
@@ -55,7 +55,7 @@
                         </button>
                     </div>
                     @if($expandedFlashCard === $flashcard->id)
-                        <p class="text-gray-700 text-lg font-light mt-2 mb-4">{{ $flashcard->answer }}</p>
+                        <p class="text-gray-700 text-lg font-light mt-2 mb-4">{!! nl2br(e($flashcard->answer)) !!}</p>
                         <div class="flex items-center justify-between mb-2">
                             <button wire:click="edit({{ $flashcard->id }})" class="bg-blue-500 hover:bg-blue-600 text-white font-md py-2 px-4 rounded mr-2">Edit</button>
                             <button wire:click="$emit('triggerConfirm', {{ $flashcard->id }})" class="ml-4 bg-rose-600 hover:bg-red-700 text-white font-md py-2 px-4 rounded">
