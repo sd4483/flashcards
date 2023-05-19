@@ -72,17 +72,6 @@
 
 <script>
     document.addEventListener('livewire:load', function () {
-        const textarea = document.getElementById('answer-textarea');
-        autosize(textarea);
-
-        Livewire.hook('message.processed', (message, component) => {
-            autosize.update(textarea);
-        });
-    });
-</script>
-
-<script>
-    document.addEventListener('livewire:load', function () {
         Livewire.on('editFlashCard', () => {
             document.getElementById("flashcardform").scrollIntoView({
                 behavior: 'smooth',
@@ -91,3 +80,17 @@
         });
     });
 </script>
+
+<!--
+<script>
+    document.addEventListener('livewire:load', function () {
+        const textarea = document.getElementById('answer-textarea');
+        autosize(textarea);
+
+        Livewire.hook('message.processed', (message, component) => {
+            autosize.update(textarea);
+        });
+    });
+</script>
+-->
+
