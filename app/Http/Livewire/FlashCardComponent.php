@@ -80,6 +80,9 @@ class FlashCardComponent extends Component
         $this->form['question'] = $flashCard->question;
         $this->form['answer'] = $flashCard->answer;
         $this->flashCardId = $id;
+
+        // Emit an event to the front end
+        $this->emit('editFlashCard');
     }
 
     public function delete($id)

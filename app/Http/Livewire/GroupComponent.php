@@ -107,6 +107,8 @@ class GroupComponent extends Component
         $this->selectedFlashCards = $group->flashcards->pluck('id')->toArray();
         $this->isEditingGroup = true;
         $this->editingGroupId = $groupId;
+
+        $this->emit('editGroup');
     }
 
     public function cancelEditing()

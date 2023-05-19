@@ -7,7 +7,7 @@
             </a>
         </div>
 
-        <form class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4" wire:submit.prevent="createOrUpdateGroup">
+        <form id="groupform" class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4" wire:submit.prevent="createOrUpdateGroup">
             <input type="text" wire:model="groupTitle" placeholder="Group Title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
             <input type="text" wire:model="flashCardSearch" placeholder="Search Flash Cards" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
 
@@ -105,4 +105,15 @@
     @endforeach
 </div>
 </div>
+
+<script>
+    document.addEventListener('livewire:load', function () {
+        Livewire.on('editGroup', () => {
+            document.getElementById("groupform").scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+</script>
 
