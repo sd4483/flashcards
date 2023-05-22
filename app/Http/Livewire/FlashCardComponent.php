@@ -85,6 +85,12 @@ class FlashCardComponent extends Component
         $this->emit('editFlashCard');
     }
 
+    public function cancelEdit()
+    {
+        $this->reset('form', 'isEditing', 'flashCardId');
+        return redirect()->to(route('welcome'));
+    }
+
     public function delete($id)
     {
         $flashCard = FlashCard::find($id);

@@ -8,12 +8,15 @@
         </div>
         <form id="flashcardform" class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4" wire:submit.prevent="save">
             <input type="text" wire:model="form.question" placeholder="Title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
-            @error('question') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
+            @error('form.question') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
             <textarea wire:model.defer="form.answer" id="answer-textarea" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="answer" type="text" placeholder="Content"></textarea>
             @error('form.answer') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-md py-2 px-4 rounded mt-4">
-                {{ $isEditing ? 'Update' : 'Save' }}
-            </button>
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-md py-2 px-4 rounded mt-4">
+                    {{ $isEditing ? 'Update' : 'Save' }}
+                </button>
+                <button wire:click="cancelEdit" wire:click="clearErrors" class="bg-yellow-600 hover:bg-yellow-700 text-white font-md py-2 px-4 rounded mt-4">Clear</button>
+            </div>
         </form>
 
         <div class="relative mb-4">
@@ -83,6 +86,7 @@
 
 <!--
 <script>
+    //for answer area if there is a really long word, that will not wrap around, it will overflow.
     document.addEventListener('livewire:load', function () {
         const textarea = document.getElementById('answer-textarea');
         autosize(textarea);

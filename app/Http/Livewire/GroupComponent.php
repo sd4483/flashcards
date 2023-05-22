@@ -114,6 +114,7 @@ class GroupComponent extends Component
     public function cancelEditing()
     {
         $this->reset('groupTitle', 'selectedFlashCards', 'isEditingGroup', 'editingGroupId');
+        return redirect()->to(route('groups'));
     }
 
     public function deleteGroup($groupId)

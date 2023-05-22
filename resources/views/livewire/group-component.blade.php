@@ -9,9 +9,10 @@
 
         <form id="groupform" class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4" wire:submit.prevent="createOrUpdateGroup">
             <input type="text" wire:model="groupTitle" placeholder="Group Title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
+            @error('groupTitle') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
             <input type="text" wire:model="flashCardSearch" placeholder="Search Flash Cards" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
 
-            <div style="height: 200px; overflow-y: scroll;" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4 bg-white">
+            <div style="height: 200px; overflow-y: scroll;" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white">
                 @foreach($flashcards as $flashcard)
                     <div>
                         <input type="checkbox" wire:model="selectedFlashCards" value="{{ $flashcard->id }}">
@@ -19,9 +20,10 @@
                     </div>
                 @endforeach
             </div>
+            @error('selectedFlashCards') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
 
             <div class="flex items-center justify-between">
-                <button wire:click="createOrUpdateGroup" type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-md py-2 px-4 rounded mt-4">
+                <button wire:click="createOrUpdateGroup" type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-md py-2 px-4 rounded mt-6">
                     Save Group
                 </button>
                 <button wire:click="cancelEditing" class="bg-yellow-600 hover:bg-yellow-700 text-white font-md py-2 px-4 rounded mt-4">Clear</button>
