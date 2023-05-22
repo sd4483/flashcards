@@ -25,27 +25,30 @@ class FlashCardComponent extends Component
 
     public function mount()
     {
-        $this->flashcards = $this->runQuery();
+        $this->flashcards = FlashCard::query()->orderBy('created_at', 'desc')->get();
     }
 
-    public function runQuery()
+    /* public function runQuery()
     {
         return FlashCard::query()
-            ->where(DB::raw('LOWER(question)'), 'like', strtolower($this->search) . '%')
+            ->where(DB::raw('LOWER(question)'), 'like', '%' . strtolower($this->search) . '%')
+            ->orWhere(DB::raw('LOWER(answer)'), 'like', '%' . strtolower($this->search) . '%')
+            ->orderBy('created_at', 'desc')
+            ->get();
+    } */
+
+    public function updatedSearch()
+    {
+        $this->flashcards = FlashCard::query()
+            ->where(DB::raw('LOWER(question)'), 'like', '%' . strtolower($this->search) . '%')
             ->orWhere(DB::raw('LOWER(answer)'), 'like', '%' . strtolower($this->search) . '%')
             ->orderBy('created_at', 'desc')
             ->get();
     }
 
-    public function updatedSearch()
-    {
-        $this->flashcards = $this->runQuery();
-    }
-
     public function clearSearch()
     {
         $this->search = '';
-        $this->flashcards = $this->runQuery();
     }
 
     public function save()

@@ -1,5 +1,5 @@
 <div class="flex justify-center">
-    <div class="w-full max-w-xl mt-8 ml-2 mr-2">
+    <div class="w-full max-w-2xl mt-8 ml-2 mr-2">
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-2xl font-bold text-left text-white">FlashCard Groups 🎴</h1>
             <a href="{{ route('welcome') }}" class="bg-teal-700 text-white font-medium text-base py-2 px-4 rounded hover:bg-teal-800">
@@ -8,11 +8,11 @@
         </div>
 
         <form id="groupform" class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4" wire:submit.prevent="createOrUpdateGroup">
-            <input type="text" wire:model="groupTitle" placeholder="Group Title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
-            @error('groupTitle') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
-            <input type="text" wire:model="flashCardSearch" placeholder="Search Flash Cards" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
+            <input type="text" wire:model="groupTitle" placeholder="Group Title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline mb-4">
+            
+            <input type="text" wire:model="flashCardSearch" placeholder="Search Flash Cards" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline mb-4">
 
-            <div style="height: 200px; overflow-y: scroll;" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white">
+            <div style="height: 200px; overflow-y: scroll;" class="shadow border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline bg-white">
                 @foreach($flashcards as $flashcard)
                     <div>
                         <input type="checkbox" wire:model="selectedFlashCards" value="{{ $flashcard->id }}">
@@ -20,8 +20,7 @@
                     </div>
                 @endforeach
             </div>
-            @error('selectedFlashCards') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
-
+            
             <div class="flex items-center justify-between">
                 <button wire:click="createOrUpdateGroup" type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-md py-2 px-4 rounded mt-6">
                     Save Group
@@ -38,7 +37,8 @@
                 class="shadow placeholder:text-gray-300 appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline pl-8 bg-transparent border-white"
             >
         </div>
-            
+        
+        <!-- searching groups -->
         @if(strlen($groupSearch) > 0)
             <div class="mb-4">
                 <span class="text-white">{{ count($groups) }} groups found</span>
@@ -53,10 +53,10 @@
         
 
         @foreach($groups as $group)
-        <div class="bg-gray-200 rounded px-6 pt-4 pb-4 mb-4">
+        <div class="bg-gray-100 rounded px-6 pt-4 pb-4 mb-4">
             <div>
                 <div class="flex items-center justify-between">
-                    <h2 class="font-bold text-lg text-black">{{ $group->name }}</h2>
+                    <h2 class="font-medium text-lg text-black">{{ $group->name }}</h2>
                     <button wire:click="expand({{ $group->id }})" class="ml-4 w-8 h-8 flex items-center justify-center">
                         @if($expandedGroup === $group->id)
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 text-black">
@@ -73,9 +73,9 @@
             
             @if($expandedGroup === $group->id)
                 @foreach($group->flashcards as $flashcard)
-                <div class="bg-white shadow-md rounded px-4 pt-2 pb-2 mb-4 mt-4">
+                <div class="bg-white border shadow rounded px-4 pt-2 pb-2 mb-4 mt-4">
                     <div class="flex items-center justify-between">
-                        <p class="font-bold text-lg">{{ $flashcard->question }}</p>
+                        <p class="font-medium text-base">{{ $flashcard->question }}</p>
                         <button wire:click="expandFlashCard({{ $flashcard->id }})" class="ml-4 w-8 h-8 flex items-center justify-center">
                             @if($expandedFlashCard === $flashcard->id)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 text-black">
@@ -89,7 +89,7 @@
                         </button>
                     </div>
                     @if($expandedFlashCard === $flashcard->id)
-                        <p class="text-gray-700 text-lg font-light mt-2 mb-4">{!! nl2br(e($flashcard->answer)) !!}</p>
+                        <p class="text-gray-800 text-base font-light mt-2 mb-4">{!! nl2br(e($flashcard->answer)) !!}</p>
                     @endif
                 </div>
             @endforeach

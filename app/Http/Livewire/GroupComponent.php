@@ -23,13 +23,13 @@ class GroupComponent extends Component
 
     public function mount()
     {
-        $this->flashcards = FlashCard::all();
+        $this->flashcards = FlashCard::query()->orderBy('created_at', 'desc')->get();
     }
 
     public function updatedFlashCardSearch()
     {
         $this->flashcards = FlashCard::query()
-            ->where(DB::raw('LOWER(question)'), 'like', strtolower($this->flashCardSearch) . '%')
+            ->where(DB::raw('LOWER(question)'), 'like', '%' . strtolower($this->flashCardSearch) . '%')
             ->orWhere(DB::raw('LOWER(answer)'), 'like', '%' . strtolower($this->flashCardSearch) . '%')
             ->get();
     }
@@ -96,6 +96,8 @@ class GroupComponent extends Component
 
         // Reset the state
         $this->reset('groupTitle', 'selectedFlashCards', 'isEditingGroup', 'editingGroupId');
+
+        $this->emit('group created');
     }
 
 
@@ -136,9 +138,9 @@ class GroupComponent extends Component
         $this->emit('alert', ['type' => 'success', 'message' => 'Group deleted successfully']);
     }
 
-    public function clearSearch()
+    public function clearGroupSearch()
     {
-        $this->search = '';
+        $this->groupSearch = '';
     }
 
 
