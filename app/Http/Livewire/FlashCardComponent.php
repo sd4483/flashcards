@@ -49,6 +49,7 @@ class FlashCardComponent extends Component
     public function clearSearch()
     {
         $this->search = '';
+        $this->flashcards = FlashCard::orderBy('created_at', 'desc')->get();
     }
 
     public function save()
