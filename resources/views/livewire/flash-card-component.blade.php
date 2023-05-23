@@ -1,11 +1,20 @@
 <div class="flex justify-center">
     <div class="w-full max-w-2xl mt-8 ml-2 mr-2">
+
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-2xl font-bold text-left text-white">FlashCards 🃏</h1>
-            <a href="{{ route('groups') }}" class="bg-cyan-700 text-white font-medium text-base py-2 px-4 rounded hover:bg-cyan-800">
-                Groups
+            <a class="text-white font-medium text-base hover:underline pr-1">
+                Login/Register
             </a>
         </div>
+
+        <div class="grid grid-cols-2 mb-4 bg-white px-6 py-6 mb-4 rounded">
+            <a href="{{ route('groups') }}" class="text-center bg-sky-600 text-white font-medium text-base py-2 px-4 rounded hover:bg-sky-700 mr-3">
+                Make Groups</a>
+            <a class="text-center bg-stone-600 text-white font-medium text-base py-2 px-4 rounded hover:bg-stone-700 ml-3">
+                Quiz Yourself</a>
+        </div>
+
         <form id="flashcardform" class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4" wire:submit.prevent="save">
             <input type="text" wire:model="form.question" placeholder="Title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline mb-4">
             @error('form.question') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
@@ -13,7 +22,7 @@
             @error('form.answer') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             <div class="flex items-center justify-between">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-md py-2 px-4 rounded mt-4">
-                    {{ $isEditing ? 'Update' : 'Save' }}
+                    {{ $isEditing ? 'Update Card' : 'Save Card' }}
                 </button>
                 <button wire:click="cancelEdit" wire:click="clearErrors" class="bg-yellow-600 hover:bg-yellow-700 text-white font-md py-2 px-4 rounded mt-4">Clear</button>
             </div>

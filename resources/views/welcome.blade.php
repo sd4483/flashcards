@@ -20,7 +20,7 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="bg-teal-900 font-lexend">
+    <body class="bg-emerald-950 font-lexend">
         @livewire('flash-card-component')
         @livewireScripts
     </body>    

@@ -1,10 +1,18 @@
 <div class="flex justify-center">
     <div class="w-full max-w-2xl mt-8 ml-2 mr-2">
+
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-2xl font-bold text-left text-white">FlashCard Groups 🎴</h1>
-            <a href="{{ route('welcome') }}" class="bg-teal-700 text-white font-medium text-base py-2 px-4 rounded hover:bg-teal-800">
-                FlashCards
+            <a class="text-white font-medium text-base hover:underline pr-1">
+                Login/Register
             </a>
+        </div>
+
+        <div class="grid grid-cols-2 mb-4 bg-white px-6 py-6 mb-4 rounded">
+            <a href="{{ route('welcome') }}" class="text-center bg-teal-600 text-white font-medium text-base py-2 px-4 rounded hover:bg-teal-700 mr-3">
+                Make FlashCards</a>
+            <a class="text-center bg-stone-600 text-white font-medium text-base py-2 px-4 rounded hover:bg-stone-700 ml-3">
+                Quiz Yourself</a>
         </div>
 
         <form id="groupform" class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4" wire:submit.prevent="createOrUpdateGroup">
