@@ -21,7 +21,33 @@
         @livewireStyles
     </head>
     <body class="bg-emerald-950 font-lexend">
-        @livewire('flash-card-component')
+        <div class="flex justify-center">
+            <div class="w-full max-w-2xl mt-8 ml-2 mr-2">
+                <div class="items-center mb-8">
+                    <h1 class="text-2xl font-bold text-center text-white">FlashCards 🃏</h1>
+                </div>
+    
+                <div class="grid grid-cols-2 mb-4 bg-white px-6 py-6 mb-4 rounded">
+                    <button onclick="showForm('loginForm')" class="text-center bg-sky-600 text-white font-medium text-base py-2 px-4 rounded hover:bg-sky-700 mr-3">
+                        Login</button>
+                    <button onclick="showForm('registerForm')" class="text-center bg-stone-600 text-white font-medium text-base py-2 px-4 rounded hover:bg-stone-700 ml-3">
+                        Register</button>
+                </div>
+                <div id="loginForm" style="display: none;">
+                    @include('auth.login')
+                </div>
+                <div id="registerForm" style="display: none;">
+                    @include('auth.register')
+                </div>
+            </div>
+        </div>
         @livewireScripts
-    </body>    
+    
+        <script>
+            function showForm(formId) {
+                var form = document.getElementById(formId);
+                form.style.display = form.style.display === 'none' ? 'block' : 'none';
+            }
+        </script>
+    </body>       
 </html>

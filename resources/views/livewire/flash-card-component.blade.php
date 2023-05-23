@@ -3,9 +3,12 @@
 
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-2xl font-bold text-left text-white">FlashCards 🃏</h1>
-            <a class="text-white font-medium text-base hover:underline pr-1">
-                Login/Register
-            </a>
+            @auth
+                <a href="{{ route('profile.edit', Auth::user()) }}" class="text-white font-medium text-lg hover:underline pr-1">
+                    {{ Auth::user()->name }}
+                </a>
+            @endauth
+
         </div>
 
         <div class="grid grid-cols-2 mb-4 bg-white px-6 py-6 mb-4 rounded">

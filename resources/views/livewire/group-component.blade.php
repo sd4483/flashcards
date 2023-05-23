@@ -3,13 +3,15 @@
 
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-2xl font-bold text-left text-white">FlashCards 🃏</h1>
-            <a class="text-white font-medium text-base hover:underline pr-1">
-                Login/Register
-            </a>
+            @auth
+                <a href="{{ route('profile.edit', Auth::user()) }}" class="text-white font-medium text-lg hover:underline pr-1">
+                    {{ Auth::user()->name }}
+                </a>
+            @endauth
         </div>
 
         <div class="grid grid-cols-2 mb-4 bg-white px-6 py-6 mb-4 rounded">
-            <a href="{{ route('welcome') }}" class="text-center bg-teal-600 text-white font-medium text-base py-2 px-4 rounded hover:bg-teal-700 mr-3">
+            <a href="{{ route('cards') }}" class="text-center bg-teal-600 text-white font-medium text-base py-2 px-4 rounded hover:bg-teal-700 mr-3">
                 Make Cards</a>
             <a class="text-center bg-stone-600 text-white font-medium text-base py-2 px-4 rounded hover:bg-stone-700 ml-3">
                 Quiz Yourself</a>
