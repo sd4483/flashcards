@@ -1,42 +1,9 @@
 <div class="flex justify-center">
     <div class="w-full max-w-2xl mt-4 ml-2 mr-2">
-        
-        <div class="flex justify-center mb-4">
-            
-            @auth
-                <h1 class="text-2xl font-bold text-left text-white">{{ Auth::user()->name }}'s FlashCards 🃏</h1>
-                {{-- <a href="{{ route('profile.edit', Auth::user()) }}" class="text-white text-right font-medium text-lg hover:underline pr-1">
-                    {{ Auth::user()->name }}
-                </a> --}}
-                {{-- <form method="POST" action="{{ route('logout') }}" class="text-right">
-                    @csrf
-                    <button type="submit" class="text-white text-base bg-rose-500 hover:bg-rose-600 px-4 py-2 rounded">Log out</button>
-                </form> --}}
-            @endauth
-        </div>              
 
-        {{-- <div class="grid grid-cols-2 mb-4 bg-white px-6 py-6 mb-4 rounded">
-            <a href="{{ route('groups') }}" class="text-center bg-sky-600 text-white font-medium text-base py-2 px-4 rounded hover:bg-sky-700 mr-3">
-                Make Groups</a>
-            <a class="text-center bg-stone-600 text-white font-medium text-base py-2 px-4 rounded hover:bg-stone-700 ml-3">
-                Quiz Yourself</a>
-        </div> --}}
+        @include('layouts.loggedin-navbar')
 
-        <div class="grid grid-cols-4 mb-8">
-            <a href="{{ route('cards') }}" class="text-center bg-white text-black font-medium text-base py-2 px-4 rounded hover:bg-teal-600 hover:text-white mr-4">
-                Make Cards</a>
-            <a href="{{ route('groups') }}" class="text-center bg-white text-black font-medium text-base py-2 px-4 rounded hover:bg-sky-600 hover:text-white mr-4">
-                Make Groups</a>
-            @auth
-                <a href="{{ route('profile.edit', Auth::user()) }}" class="text-black text-center font-medium text-base py-2 px-4 rounded bg-white mr-4">
-                    View Profile
-                </a>
-                <form method="POST" action="{{ route('logout') }}" class="text-center text-white text-base bg-rose-500 py-2 px-4 rounded hover:bg-rose-600">
-                    @csrf
-                    <button type="submit">Log out</button>
-                </form>
-            @endauth
-        </div>
+        <div class="text-base font-medium text-white mb-4 text-center">Make FlashCards 📝</div>
 
         <form id="flashcardform" class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4" wire:submit.prevent="save">
             <input type="text" wire:model="form.question" placeholder="Title" class="shadow appearance-none border-inherit rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline mb-4">

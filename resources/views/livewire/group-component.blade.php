@@ -1,21 +1,9 @@
 <div class="flex justify-center">
-    <div class="w-full max-w-2xl mt-8 ml-2 mr-2">
+    <div class="w-full max-w-2xl mt-4 ml-2 mr-2">
 
-        <div class="flex justify-between items-center mb-8">
-            <h1 class="text-2xl font-bold text-left text-white">FlashCards 🃏</h1>
-            @auth
-                <a href="{{ route('profile.edit', Auth::user()) }}" class="text-white font-medium text-lg hover:underline pr-1">
-                    {{ Auth::user()->name }}
-                </a>
-            @endauth
-        </div>
+        @include('layouts.loggedin-navbar')
 
-        <div class="grid grid-cols-2 mb-4 bg-white px-6 py-6 mb-4 rounded">
-            <a href="{{ route('cards') }}" class="text-center bg-teal-600 text-white font-medium text-base py-2 px-4 rounded hover:bg-teal-700 mr-3">
-                Make Cards</a>
-            <a class="text-center bg-stone-600 text-white font-medium text-base py-2 px-4 rounded hover:bg-stone-700 ml-3">
-                Quiz Yourself</a>
-        </div>
+        <div class="text-base font-medium text-white mb-4 text-center">Create Groups 📑</div>
 
         <form id="groupform" class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4" wire:submit.prevent="createOrUpdateGroup">
             <input type="text" wire:model="groupTitle" placeholder="Group Title" class="shadow appearance-none border-inherit rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline mb-4">

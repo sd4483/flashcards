@@ -22,7 +22,7 @@
     </head>
     <body class="bg-emerald-950 font-lexend">
         <div class="flex justify-center">
-            <div class="w-full max-w-2xl mt-8 ml-2 mr-2">
+            <div class="w-full max-w-2xl mt-4 ml-2 mr-2">
                 <div class="items-center mb-8">
                     <h1 class="text-2xl font-bold text-center text-white">FlashCards 🃏</h1>
                 </div>
