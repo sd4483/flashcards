@@ -30,7 +30,7 @@
                 <!--Example FlashCard-->
 
                 <div>
-                    <p class="text-xl text-white mb-3 font-medium">Make simple Flashcards to study for exams or to learn anything you want to learn. An example flashcard 👇</p> 
+                    <p class="text-xl text-white mb-4 font-medium text-center">Make simple Flashcards to study for exams or to learn anything you want to learn. An example flashcard 👇</p> 
                     
 
                     <div class="bg-white shadow-md rounded px-6 pt-4 pb-4 mb-4"> 
