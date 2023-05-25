@@ -18,9 +18,9 @@
         </div>
 
         <form id="groupform" class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4" wire:submit.prevent="createOrUpdateGroup">
-            <input type="text" wire:model="groupTitle" placeholder="Group Title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline mb-4">
+            <input type="text" wire:model="groupTitle" placeholder="Group Title" class="shadow appearance-none border-inherit rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline mb-4">
             
-            <input type="text" wire:model="flashCardSearch" placeholder="Search Flash Cards" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline mb-4">
+            <input type="text" wire:model="flashCardSearch" placeholder="Search Flash Cards" class="shadow appearance-none border-inherit rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline mb-4">
 
             <div style="height: 200px; overflow-y: scroll;" class="shadow border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline bg-white">
                 @foreach($flashcards as $flashcard)
@@ -66,7 +66,7 @@
         <div class="bg-gray-100 rounded px-6 pt-4 pb-4 mb-4">
             <div>
                 <div class="flex items-center justify-between">
-                    <h2 class="font-medium text-lg text-black">{{ $group->name }}</h2>
+                    <h2 class="font-bold text-lg text-black">{{ $group->name }}</h2>
                     <button wire:click="expand({{ $group->id }})" class="ml-4 w-8 h-8 flex items-center justify-center">
                         @if($expandedGroup === $group->id)
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 text-black">
@@ -85,7 +85,7 @@
                 @foreach($group->flashcards as $flashcard)
                 <div class="bg-white border shadow rounded px-4 pt-2 pb-2 mb-4 mt-4">
                     <div class="flex items-center justify-between">
-                        <p class="font-medium text-base">{{ $flashcard->question }}</p>
+                        <p class="font-bold text-base">{{ $flashcard->question }}</p>
                         <button wire:click="expandFlashCard({{ $flashcard->id }})" class="ml-4 w-8 h-8 flex items-center justify-center">
                             @if($expandedFlashCard === $flashcard->id)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 text-black">
