@@ -51,7 +51,7 @@
         
 
         @foreach($groups as $group)
-        <div class="bg-gray-100 rounded px-6 pt-4 pb-4 mb-4">
+        <div class="bg-gray-100 overflow-hidden rounded px-6 py-2 mb-4">
             <div>
                 <div class="flex items-center justify-between">
                     <h2 class="font-bold text-lg text-black">{{ $group->name }}</h2>
@@ -71,8 +71,8 @@
             
             @if($expandedGroup === $group->id)
                 @foreach($group->flashcards as $flashcard)
-                <div class="bg-white border shadow rounded px-4 pt-2 pb-2 mb-4 mt-4">
-                    <div class="flex items-center justify-between">
+                <div class="overflow-hidden rounded mb-4 mt-4">
+                    <div class="flex items-center bg-[#DEE3E3] rounded-t px-4 py-1 justify-between">
                         <p class="font-bold text-base">{{ $flashcard->question }}</p>
                         <button wire:click="expandFlashCard({{ $flashcard->id }})" class="ml-4 w-8 h-8 flex items-center justify-center">
                             @if($expandedFlashCard === $flashcard->id)
@@ -87,16 +87,18 @@
                         </button>
                     </div>
                     @if($expandedFlashCard === $flashcard->id)
-                        <p class="text-gray-800 text-base font-light mt-2 mb-4">{!! nl2br(e($flashcard->answer)) !!}</p>
+                        <div class="border-b-2 border-x-2 border-[#DEE3E3] px-4 py-2 rounded-b">
+                            <p class="text-gray-800 text-base font-light">{!! nl2br(e($flashcard->answer)) !!}</p>
+                        </div>
                     @endif
                 </div>
             @endforeach
 
             <div class="flex items-center justify-between mt-4 mb-2">
-                <button wire:click="startEditing({{ $group->id }})" class="bg-blue-500 hover:bg-blue-600 text-white font-md py-2 px-4 rounded mr-2">
-                    Edit
+                <button wire:click="startEditing({{ $group->id }})" class="bg-blue-500 hover:bg-blue-600 text-white font-md py-0.5 px-2 rounded mr-2">
+                    Edit Group
                 </button>
-                <button wire:click="deleteGroup({{ $group->id }})" class="bg-rose-600 hover:bg-red-700 text-white font-md py-2 px-4 rounded">
+                <button wire:click="deleteGroup({{ $group->id }})" class="bg-rose-600 hover:bg-red-700 text-white font-md py-0.5 px-2 rounded">
                     Delete Group
                 </button>
             </div>

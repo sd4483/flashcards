@@ -40,11 +40,11 @@
         @endif
 
         @foreach($flashcards as $flashcard)
-            <div class="bg-white shadow-md rounded px-6 pt-4 pb-4 mb-4">
-                <div>
-                    <div class="flex items-center justify-between">
-                        <p class="font-bold text-lg">{{ $flashcard->question }}</p>
-                        <button wire:click="expand({{ $flashcard->id }})" class="ml-4 w-8 h-8 flex items-center justify-center">
+            <div class="mb-4 rounded overflow-hidden">
+                {{-- <div> --}}
+                    <div class="flex items-center rounded-t justify-between bg-[#DEE3E3]">
+                        <p class="font-medium text-black text-lg px-6 py-2">{{ $flashcard->question }}</p>
+                        <button wire:click="expand({{ $flashcard->id }})" class="mr-4 w-8 h-8 flex items-center justify-center">
                             @if($expandedFlashCard === $flashcard->id)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 text-black">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
@@ -57,15 +57,19 @@
                         </button>
                     </div>
                     @if($expandedFlashCard === $flashcard->id)
-                        <p class="text-gray-700 text-base font-light mt-2 mb-4">{!! nl2br(e($flashcard->answer)) !!}</p>
-                        <div class="flex items-center justify-between mb-2">
-                            <button wire:click="edit({{ $flashcard->id }})" class="bg-blue-500 hover:bg-blue-600 text-white font-md py-2 px-4 rounded mr-2">Edit</button>
-                            <button wire:click="$emit('triggerConfirm', {{ $flashcard->id }})" class="ml-4 bg-rose-600 hover:bg-red-700 text-white font-md py-2 px-4 rounded">
+                    
+                    <div class="bg-white rounded-b px-6 py-4 border-b-2 border-x-2 border-[#DEE3E3]">
+                        <p class="text-gray-700 text-base font-light pb-4">{!! nl2br(e($flashcard->answer)) !!}</p>
+                        <div class="flex items-center justify-between">
+                            <button wire:click="edit({{ $flashcard->id }})" class="bg-blue-500 hover:bg-blue-600 text-white font-md py-0.5 px-2 rounded mr-2">Edit</button>
+                            <button wire:click="$emit('triggerConfirm', {{ $flashcard->id }})" class="ml-4 bg-rose-600 hover:bg-red-700 text-white font-md py-0.5 px-2 rounded">
                                 Delete
                             </button>
                         </div>
+                    </div>
+                        
                     @endif
-                </div>
+                {{-- </div> --}}
             </div>
         @endforeach
 

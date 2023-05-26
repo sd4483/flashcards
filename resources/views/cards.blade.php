@@ -16,11 +16,12 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="bg-emerald-950 font-lexend">
+    <body class="bg-[#010814] font-lexend">
         @livewire('flash-card-component')
         @livewireScripts
     </body>    

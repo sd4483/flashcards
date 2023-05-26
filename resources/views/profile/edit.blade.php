@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="bg-emerald-950">
+    <div class="bg-[#010814]">
         <div class="max-w-2xl mx-auto pt-4 pb-8">
             
             @include('layouts.loggedin-navbar')

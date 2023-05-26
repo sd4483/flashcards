@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="flex justify-center bg-emerald-950">
+    <div class="flex justify-center bg-[#010814]">
         <div class="w-full max-w-2xl">
             <div class="py-12 text-white text-base">
                 {{ __("You're logged in!") }}

@@ -19,7 +19,7 @@
 
         @livewireStyles
     </head>
-    <body class="bg-emerald-950 font-lexend">
+    <body class="bg-[#010814] font-lexend">
         @livewire('group-component')
         @livewireScripts
     </body>

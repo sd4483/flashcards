@@ -20,7 +20,7 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="bg-emerald-950 font-lexend">
+    <body class="bg-[#010814] font-lexend">
         <div class="flex justify-center">
             <div class="w-full max-w-2xl mt-4 mb-8 ml-2 mr-2">
                 <div class="items-center mb-8">
@@ -33,11 +33,16 @@
                     <p class="text-xl text-white mb-4 font-medium text-center">Make simple Flashcards to study for exams or to learn anything you want to learn. An example flashcard 👇</p> 
                     
 
-                    <div class="bg-white shadow-md rounded px-6 pt-4 pb-4 mb-6"> 
-                        <p class="font-bold text-lg">What is blockchain?</p>
-                        <p class="text-gray-700 text-base font-light mt-2">A blockchain stores transactions in the form of blocks which are linked together in a Distributed Ledger.<br><br>
-                            This ledger is essentially immutable and connected over a peer-to-peer network. It consists of a genesis block, main chain and orphan blocks.<br><br>
-                            Each block contains a cryptographic hash of the previous block, a timestamp and transaction data.</p>
+                    <div class="rounded overflow-hidden mb-6"> 
+                        <div class="bg-[#DEE3E3] px-6 py-2">
+                            <p class="font-medium text-lg">What is blockchain?</p>
+                        </div>
+                        <div class="bg-white border-b-2 border-x-2 border-[#DEE3E3] rounded-b px-6 pt-1 pb-4">
+                            <p class="text-gray-700 text-base font-light mt-2">A blockchain stores transactions in the form of blocks which are linked together in a Distributed Ledger.<br><br>
+                                This ledger is essentially immutable and connected over a peer-to-peer network. It consists of a genesis block, main chain and orphan blocks.<br><br>
+                                Each block contains a cryptographic hash of the previous block, a timestamp and transaction data.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
