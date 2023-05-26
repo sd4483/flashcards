@@ -1,11 +1,18 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}" class="bg-white px-6 pb-6 pt-2 rounded-b">
+    <form method="POST" action="{{ route('register') }}" class="bg-white px-6 pb-6 pt-2 rounded">
         @csrf
+
+        <div class="text-center font-bold text-xl mb-1 mt-4">Register your account</div>
+
+        <span class="block text-center mb-6 text-xs">Already registered?
+            <button id="loginButton" onclick="showForm('loginForm', 'registerForm')" class="underline font-medium text-blue-600 hover:text-blue-700">
+                Login</button>
+        </span>
 
         <!-- Name -->
         <div>
             {{-- <x-input-label for="name" :value="__('Name')" /> --}}
-            <x-text-input id="name" placeholder="Name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-text-input id="name" placeholder="Name" class="block w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
@@ -39,12 +46,8 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ml-4 mt-2">
+        <div class="flex items-center justify-between mt-4">
+            <x-primary-button>
                 {{ __('Register') }}
             </x-primary-button>
         </div>
